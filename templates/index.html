@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chatbot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/realstyle.css') }}">
+</head>
+<body>
+    <nav>
+    <h1>ViCi</h1>
+    </nav>
+    
+    <div class="chat-container">
+
+        <div class="chat-box">
+            <div class="messages" id="messages"></div>
+            <!--<input type="text" id="responseText" name="response" readonly>-->
+        </div>
+
+        <!--<h2>Enter your Questions</h2>-->
+        <form id="queryForm"class="input-box">
+            <input type="text" id="query" name="query" placeholder="Ask something..." required>
+            <button id=user type="submit"><i class='bx bx-paper-plane' ></i></button>
+        </form>
+
+    </div>
+    <script>
+        // Function to display the default introduction message
+        function displayIntroduction() {
+            const messages = document.getElementById('messages');
+            const introMessage = document.createElement('div');
+            introMessage.classList.add('message', 'bot-message');
+            introMessage.innerText = "Hi, I am ViCi. How may I help?";
+            messages.appendChild(introMessage);
+        }
+
+        // Run the introduction message when the page loads
+        window.onload = function() {
+            displayIntroduction();
+        }
+
+        document.getElementById('queryForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('query').value;
+
+            // Display user's question in the chat
+            const messages = document.getElementById('messages');
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user-message');
+            userMessage.innerText = query;
+            messages.appendChild(userMessage);
+
+            // Clear input field
+            document.getElementById('query').value = '';
+
+            // Fetch the response from the server
+            fetch('/get_response', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({ 'query': query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessage = document.createElement('div');
+                botMessage.classList.add('message', 'bot-message');
+                botMessage.innerText = data.response;
+                messages.appendChild(botMessage);
+
+                // Scroll to the bottom of the chat box
+                messages.scrollTop = messages.scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html>

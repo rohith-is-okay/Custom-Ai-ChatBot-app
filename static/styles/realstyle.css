@@ -1,0 +1,125 @@
+body {
+  font-family: Montserrat;
+  background: url(https://img.freepik.com/free-vector/gradient-particle-wave-background_23-2150541598.jpg?t=st=1726336165~exp=1726339765~hmac=22909f464fc0fa2b2eb9a1b205e1550a9a1305ae29d351a9e708df2ee74a33c0&w=1800) no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+
+nav{
+  height:100px;
+  width: 100%;
+}
+
+h1{
+  color:#ffffff;
+  font-size: 35px;
+  line-height: 40px;
+  padding: 0 100px;
+  font-weight: bold;
+  text-align: center; 
+  letter-spacing: .07rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(118, 116, 218, 0.196);
+  border: 2px solid rgba(238, 238, 238, 0.237);
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(167, 121, 121, 0.1);
+  overflow:hidden;
+  backdrop-filter: blur(15px);
+}
+
+.chat-box{
+  flex-grow: 1;
+  padding: 10px;
+  overflow-y: scroll;
+  height: calc(100%-50px);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 15px 10px;
+  border-radius: 15px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background: linear-gradient(#2e3fff, #7e14e8);
+  color: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  align-self: flex-end;
+}
+
+.bot-message {
+  background: linear-gradient(#1a1a1a 70%,#3b066f);
+  color: rgb(215, 215, 215);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  align-self: flex-start;
+}
+
+/* Input box */
+.input-box {
+  display: flex;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: #8b52bd;
+  margin: 10px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 16px;
+  margin-right: 10px;/*equal padding for button*/
+  transition: box-shadow 120ms ease-out 50ms;
+}
+input[type="text"]:hover{
+  box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0);
+  transition: color 150ms ease-out 50ms;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 25px
+}
+
+button:hover {
+  color: #000000;
+}
+
+/* Scrollbar styles for the chat box */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #007BFF;
+    border-radius: 4px;
+}
