@@ -3,7 +3,7 @@ from langchain_openai import ChatOpenAI
 from flask import Flask, render_template, request, jsonify
 import os
 
-os.environ["OPENAI_API_KEY"] = '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'
+os.environ["OPENAI_API_KEY"] = 'sk-'
 app = Flask(__name__)
 
 def construct_index(directory_path):
